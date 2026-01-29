@@ -1,134 +1,210 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konvertiha - كونفرتيها | أتمتة المبيعات والذكاء الاصطناعي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
-        .pricing-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .pricing-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
-        .faq-item:hover { border-color: #2563eb; background-color: white; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konvertiha | AI WhatsApp Sales Automation</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Tajawal', sans-serif; }
+
+    /* ===== Animations ===== */
+    .animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .animate.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: .1s }
+    .delay-2 { transition-delay: .2s }
+    .delay-3 { transition-delay: .3s }
+    .delay-4 { transition-delay: .4s }
+
+    .card-hover {
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 60px -15px rgba(37,99,235,.25);
+    }
+
+    .pulse {
+      animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,99,235,.4); }
+      70% { box-shadow: 0 0 0 22px rgba(37,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    }
+  </style>
 </head>
 
 <body class="bg-white text-slate-900">
 
-<nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="m3 11 18-5v12L3 14v-3z"/>
-                        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-                    </svg>
-                </div>
-                <span class="font-black text-2xl tracking-tighter">
-                    كونفرتيها<span class="text-blue-600">.</span>
-                </span>
-            </div>
+<!-- NAVBAR -->
+<header class="fixed w-full bg-white/80 backdrop-blur border-b z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-black">Konvertiha<span class="text-blue-600">.</span></div>
 
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#" class="text-blue-600 font-bold text-sm">الرئيسية</a>
-                <a href="#pricing" class="text-slate-500 hover:text-slate-900 text-sm">الباقات</a>
-                <a href="#faq" class="text-slate-500 hover:text-slate-900 text-sm">الأسئلة الشائعة</a>
-                <a href="#contact" class="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-600">
-                    ابدأ الآن
-                </a>
-            </div>
-        </div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#features" data-i18n="nav_features">الميزات</a>
+        <a href="#pricing" data-i18n="nav_pricing">الأسعار</a>
+      </nav>
+
+      <button id="langToggle"
+        class="border px-4 py-2 rounded-full text-sm font-bold hover:border-blue-600">
+        EN
+      </button>
     </div>
-</nav>
+  </div>
+</header>
 
-<section class="pt-44 pb-24 text-center bg-gradient-to-b from-blue-50/50 to-white">
-    <div class="max-w-4xl mx-auto px-4">
-        <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-black">
-            تحويل المبيعات الذكي
-        </span>
+<!-- HERO -->
+<section class="pt-40 pb-28 bg-gradient-to-b from-blue-50 to-white text-center">
+  <div class="max-w-5xl mx-auto px-6">
+    <span class="animate delay-1 inline-block bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold mb-6"
+      data-i18n="badge">
+      تحويل المبيعات الذكي
+    </span>
 
-        <h1 class="text-5xl md:text-7xl font-black mt-6 mb-8 leading-tight">
-            Konvertiha<br>
-            <span class="text-blue-600">حوّل المحادثات إلى مبيعات</span>
-        </h1>
+    <h1 class="animate delay-2 text-5xl md:text-7xl font-black leading-tight mb-6"
+      data-i18n="hero_title">
+      حوّل المحادثات إلى مبيعات
+    </h1>
 
-        <p class="text-slate-500 text-xl max-w-2xl mx-auto mb-12">
-            اربط واتساب بالذكاء الاصطناعي، وأتمت رحلة العميل من أول رسالة حتى إغلاق الصفقة.
-        </p>
+    <p class="animate delay-3 text-slate-500 text-xl max-w-3xl mx-auto mb-12"
+      data-i18n="hero_desc">
+      أتمتة مبيعات واتساب بالذكاء الاصطناعي من أول رسالة حتى الإغلاق.
+    </p>
 
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#pricing" class="px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-lg">
-                اكتشف الباقات
-            </a>
-            <a href="#contact" class="px-10 py-4 bg-white border rounded-full font-bold text-lg">
-                تواصل مع خبير
-            </a>
-        </div>
+    <div class="animate delay-4 flex flex-wrap justify-center gap-4">
+      <a href="#pricing"
+         class="pulse px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-lg">
+        <span data-i18n="cta_primary">ابدأ الآن</span>
+      </a>
+      <a href="#features"
+         class="px-10 py-4 bg-white border rounded-full font-bold text-lg"
+         data-i18n="cta_secondary">
+        شاهد كيف يعمل
+      </a>
     </div>
+  </div>
 </section>
 
-<section id="pricing" class="py-24 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-black">باقات Konvertiha</h2>
-            <p class="text-slate-500 mt-2">خطط مرنة لنمو مبيعاتك</p>
-        </div>
+<!-- FEATURES -->
+<section id="features" class="py-28">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="animate text-4xl font-black mb-4" data-i18n="features_title">
+      منصة مبيعات ذكية
+    </h2>
+    <p class="animate delay-1 text-slate-500 mb-16" data-i18n="features_desc">
+      كل ما تحتاجه لزيادة التحويل
+    </p>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="pricing-card bg-white p-10 rounded-3xl border">
-                <h3 class="text-slate-400 font-bold">Starter</h3>
-                <div class="text-4xl font-black my-6">$99</div>
-                <ul class="space-y-3 text-sm">
-                    <li>✅ رقم واتساب واحد</li>
-                    <li>✅ Chatwoot CRM</li>
-                    <li>✅ دعم أساسي</li>
-                </ul>
-            </div>
-
-            <div class="pricing-card bg-white p-10 rounded-3xl border-4 border-blue-600 scale-105">
-                <h3 class="text-blue-600 font-bold">Growth</h3>
-                <div class="text-4xl font-black my-6">$249</div>
-                <ul class="space-y-3 text-sm font-bold">
-                    <li>✅ 3 أرقام واتساب</li>
-                    <li>✅ n8n Automation</li>
-                    <li>✅ AI Sales Bot</li>
-                    <li>✅ دعم VIP</li>
-                </ul>
-            </div>
-
-            <div class="pricing-card bg-slate-900 text-white p-10 rounded-3xl">
-                <h3 class="text-slate-400 font-bold">Enterprise</h3>
-                <div class="text-4xl font-black my-6">Custom</div>
-                <ul class="space-y-3 text-sm">
-                    <li>✅ On-Premise</li>
-                    <li>✅ تحكم كامل</li>
-                    <li>✅ تطوير خاص</li>
-                </ul>
-            </div>
-        </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="animate delay-1 card-hover p-8 border rounded-3xl">
+        <h3 class="font-black mb-2">AI Bot</h3>
+        <p class="text-slate-500" data-i18n="f1">ردود ذكية وتأهيل العملاء تلقائيًا</p>
+      </div>
+      <div class="animate delay-2 card-hover p-8 border rounded-3xl">
+        <h3 class="font-black mb-2">Automation</h3>
+        <p class="text-slate-500" data-i18n="f2">أتمتة كاملة باستخدام n8n</p>
+      </div>
+      <div class="animate delay-3 card-hover p-8 border rounded-3xl">
+        <h3 class="font-black mb-2">CRM</h3>
+        <p class="text-slate-500" data-i18n="f3">إدارة المحادثات والعملاء بسهولة</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<footer class="py-12 text-center text-slate-400 text-xs font-bold">
-    © 2026 Konvertiha | Automation that Converts
+<!-- PRICING -->
+<section id="pricing" class="py-28 bg-slate-50 text-center">
+  <h2 class="animate text-4xl font-black mb-12" data-i18n="pricing_title">
+    خطط مرنة
+  </h2>
+
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+    <div class="animate delay-1 card-hover bg-white p-10 rounded-3xl border">
+      <h3 class="font-bold">Starter</h3>
+      <div class="text-4xl font-black my-6">$99</div>
+    </div>
+
+    <div class="animate delay-2 card-hover bg-white p-10 rounded-3xl border-4 border-blue-600 scale-105">
+      <h3 class="font-bold text-blue-600">Growth</h3>
+      <div class="text-4xl font-black my-6">$249</div>
+    </div>
+
+    <div class="animate delay-3 card-hover bg-slate-900 text-white p-10 rounded-3xl">
+      <h3 class="font-bold">Enterprise</h3>
+      <div class="text-4xl font-black my-6">Custom</div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-10 text-center text-slate-400 text-sm">
+  © 2026 Konvertiha
 </footer>
 
+<!-- SCRIPTS -->
 <script>
-(function(d,t){
-  var BASE_URL="https://chatwoot.panel.faouzibounoua.online";
-  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=BASE_URL+"/packs/js/sdk.js";
-  g.async=true;
-  s.parentNode.insertBefore(g,s);
-  g.onload=function(){
-    window.chatwootSDK.run({
-      websiteToken:'w1E4JR3tAPDMZ5RiZbUsHVHp',
-      baseUrl:BASE_URL
-    })
+/* Scroll animation */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.isIntersecting && e.target.classList.add("show"));
+},{threshold:.15});
+document.querySelectorAll(".animate").forEach(el => observer.observe(el));
+
+/* Language toggle */
+const t = {
+  ar: {
+    nav_features:"الميزات", nav_pricing:"الأسعار",
+    badge:"تحويل المبيعات الذكي",
+    hero_title:"حوّل المحادثات إلى مبيعات",
+    hero_desc:"أتمتة مبيعات واتساب بالذكاء الاصطناعي من أول رسالة حتى الإغلاق.",
+    cta_primary:"ابدأ الآن", cta_secondary:"شاهد كيف يعمل",
+    features_title:"منصة مبيعات ذكية",
+    features_desc:"كل ما تحتاجه لزيادة التحويل",
+    f1:"ردود ذكية وتأهيل العملاء تلقائيًا",
+    f2:"أتمتة كاملة باستخدام n8n",
+    f3:"إدارة المحادثات والعملاء بسهولة",
+    pricing_title:"خطط مرنة"
+  },
+  en: {
+    nav_features:"Features", nav_pricing:"Pricing",
+    badge:"AI Sales Automation",
+    hero_title:"Turn Conversations Into Sales",
+    hero_desc:"Automate WhatsApp sales with AI from first message to close.",
+    cta_primary:"Get Started", cta_secondary:"See How It Works",
+    features_title:"Smart Sales Platform",
+    features_desc:"Everything you need to convert more leads",
+    f1:"Smart AI replies & lead qualification",
+    f2:"Full automation with n8n",
+    f3:"Easy conversation & customer management",
+    pricing_title:"Flexible Pricing"
   }
-})(document,"script");
+};
+
+let lang="ar";
+document.getElementById("langToggle").onclick=()=>{
+  lang=lang==="ar"?"en":"ar";
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  document.getElementById("langToggle").innerText=lang==="ar"?"EN":"AR";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.innerText=t[lang][el.dataset.i18n];
+  });
+};
 </script>
 
 </body>
